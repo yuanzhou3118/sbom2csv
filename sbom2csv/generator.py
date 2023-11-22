@@ -18,7 +18,12 @@ def write_csv(components, output_file):
             version = component.get("version", "")
             description = component.get("description", "")
             developer = component.get("author", "")  # Using 'author' as 'developer'
-            license = component.get("licenses", [{}])[0].get("license", {}).get("id", "")
+            licenses = component.get("licenses", [])
+            if licenses and isinstance(licenses, list):
+                license = licenses[0].get("license", {}).get("id", "")
+            else:
+                license = ""
+
             user_document = next((ref['url'] for ref in component.get("externalReferences", []) if ref.get("type") == "website"), "")
 
             writer.writerow([name, version, description, developer, license, user_document])
