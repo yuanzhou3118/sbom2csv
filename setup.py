@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
+from sbom2csv.version import VERSION
 
 setup(
     name='sbom2csv',
-    version='1.0.0',
+    version=VERSION,
     author='Yuan Zhou',
     author_email='zhouyuan3118@gmail.com',
     packages=find_packages(),
